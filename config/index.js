@@ -24,11 +24,16 @@ module.exports = {
         pollingIntervalMs: process.env.RPP_POLLING_INTERVAL || 10000,
         showCallStackError: process.env.RPP_LOG_CALL_STACK || false,
         reconnectIntervalMs: process.env.RPP_RECONNECT_INTERVAL || 15000,
+        openRouterApiKey: process.env.RPP_OPENROUTER_API_KEY || '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'
     },
     discord: {
         username: process.env.RPP_DISCORD_USERNAME || 'rustplusplus',
         clientId: process.env.RPP_DISCORD_CLIENT_ID || '',
         token: process.env.RPP_DISCORD_TOKEN || '',
         needAdminPrivileges: process.env.RPP_NEED_ADMIN_PRIVILEGES || true, /* If true, only admins can delete (server, switch..), manage credentials and reset a channel */
+    },
+    webui: {
+        enabled: process.env.RPP_WEBUI_ENABLED !== 'false', /* Enable or disable the Web UI */
+        port: process.env.RPP_WEBUI_PORT || 3000, /* Port for the Web UI server */
     }
 };
