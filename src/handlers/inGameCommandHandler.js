@@ -21,6 +21,7 @@
 const SmartAlarmHandler = require('./smartAlarmHandler.js');
 const SmartSwitchGroupHandler = require('./smartSwitchGroupHandler.js');
 const SmartSwitchHandler = require('./smartSwitchHandler.js');
+const AiCommandHandler = require('./aiCommandHandler.js');
 
 module.exports = {
     inGameCommandHandler: async function (rustplus, client, message) {
@@ -42,6 +43,12 @@ module.exports = {
         }
         else if (!rustplus.generalSettings.inGameCommandsEnabled) {
             return false;
+        }
+        else if (commandLowerCase.startsWith(`${prefix}ai`)) {
+            if (await AiCommandHandler.aiCommandHandler(rustplus, client, command)) {
+                rustplus.logInGameCommand('AI', message);
+                return true;
+            }
         }
         else if (commandLowerCase === `${prefix}${client.intlGet('en', 'commandSyntaxAfk')}` ||
             commandLowerCase === `${prefix}${client.intlGet(guildId, 'commandSyntaxAfk')}`) {
@@ -107,10 +114,7 @@ module.exports = {
         }
         else if (commandLowerCase.startsWith(`${prefix}${client.intlGet('en', 'commandSyntaxMarket')} `) ||
             commandLowerCase.startsWith(`${prefix}${client.intlGet(guildId, 'commandSyntaxMarket')} `)) {
-                let response = rustplus.getCommandMarket(command);
-                if (typeof response === 'string' && response.length > 0) {
-                    rustplus.sendInGameMessage(response);
-                }
+            rustplus.sendInGameMessage(rustplus.getCommandMarket(command));
         }
         else if (commandLowerCase === `${prefix}${client.intlGet('en', 'commandSyntaxMute')}` ||
             commandLowerCase === `${prefix}${client.intlGet(guildId, 'commandSyntaxMute')}`) {
@@ -213,10 +217,6 @@ module.exports = {
         else if (commandLowerCase === `${prefix}${client.intlGet('en', 'commandSyntaxTravelingVendor')}` ||
             commandLowerCase === `${prefix}${client.intlGet(guildId, 'commandSyntaxTravelingVendor')}`) {
             rustplus.sendInGameMessage(rustplus.getCommandTravelingVendor());
-        }
-        else if (commandLowerCase === `${prefix}${client.intlGet('en', 'commandSyntaxDeepSea')}` ||
-            commandLowerCase === `${prefix}${client.intlGet(guildId, 'commandSyntaxDeepSea')}`) {
-            rustplus.sendInGameMessage(rustplus.getCommandDeepSea());
         }
         else {
             /* Maybe a custom command? */
