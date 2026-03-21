@@ -24,7 +24,7 @@ module.exports = {
         pollingIntervalMs: process.env.RPP_POLLING_INTERVAL || 10000,
         showCallStackError: process.env.RPP_LOG_CALL_STACK || false,
         reconnectIntervalMs: process.env.RPP_RECONNECT_INTERVAL || 15000,
-        openRouterApiKey: process.env.RPP_OPENROUTER_API_KEY || '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'
+        openRouterApiKey: process.env.RPP_OPENROUTER_API_KEY || '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'
     },
     discord: {
         username: process.env.RPP_DISCORD_USERNAME || 'rustplusplus',
