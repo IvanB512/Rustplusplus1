@@ -1,0 +1,211 @@
+/* ===== ОСНОВНЫЕ СТИЛИ ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #333;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    color: #2c3e50;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+/* ===== СЕКЦИИ ===== */
+.project-section, .control-section, .status-section, .logs-section {
+    margin-bottom: 25px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-size: 1.3em;
+}
+
+/* ===== ВЫБОР ПУТИ ===== */
+.path-selector {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 15px;
+    align-items: center;
+}
+
+#projectPath {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* ===== КНОПКИ ===== */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-browse { background: #3498db; color: white; }
+.btn-start { background: #27ae60; color: white; }
+.btn-stop { background: #e74c3c; color: white; }
+.btn-restart { background: #f39c12; color: white; }
+.btn-clear { background: #ff6b6b; color: white; padding: 10px 15px; }
+.btn-small { padding: 5px 10px; font-size: 12px; background: #95a5a6; color: white; }
+
+.btn:disabled {
+    background: #bdc3c7;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* ===== ГРУППЫ КНОПОК ===== */
+.button-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* ===== ИНФОРМАЦИЯ О ПРОЕКТЕ ===== */
+.project-info {
+    padding: 15px;
+    background: #e8f4fd;
+    border-radius: 5px;
+    border-left: 4px solid #3498db;
+}
+
+/* ===== СТАТУС ===== */
+.status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.status.running {
+    background: #d4f8e8;
+    border-left: 4px solid #27ae60;
+}
+
+.status.stopped {
+    background: #fadbd8;
+    border-left: 4px solid #e74c3c;
+}
+
+.status.unknown {
+    background: #fcf3cf;
+    border-left: 4px solid #f39c12;
+}
+
+.status-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.status.running .status-indicator { background: #27ae60; }
+.status.stopped .status-indicator { background: #e74c3c; }
+.status.unknown .status-indicator { background: #f39c12; }
+
+/* ===== ЛОГИ ===== */
+.logs-container {
+    height: 200px;
+    background: #1a1a1a;
+    color: #00ff00;
+    padding: 15px;
+    border-radius: 5px;
+    overflow-y: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.log-entry {
+    padding: 3px 0;
+    border-bottom: 1px solid #333;
+    line-height: 1.4;
+}
+
+.log-entry.info { color: #00ff00; }
+.log-entry.error { color: #ff6b6b; }
+.log-entry.warning { color: #f39c12; }
+
+.log-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+/* ===== СКРОЛЛБАР ===== */
+.logs-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.logs-container::-webkit-scrollbar-track {
+    background: #2d2d2d;
+}
+
+.logs-container::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 4px;
+}
+
+.logs-container::-webkit-scrollbar-thumb:hover {
+    background: #777;
+}
+
+/* ===== АДАПТИВНОСТЬ ===== */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+        margin: 10px;
+    }
+    
+    .path-selector {
+        flex-direction: column;
+    }
+    
+    .button-group {
+        flex-direction: column;
+    }
+    
+    .btn {
+        width: 100%;
+    }
+}
